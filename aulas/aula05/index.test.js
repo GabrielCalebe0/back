@@ -9,6 +9,12 @@ test("deve retornar status 200 e um json no GET", async function(){
     expect(response.headers['content-type']).toMatch(/json/)
 })
 
+test("Deve retornar status 201 e um json no POST", async function(){
+    const response = await request.post("/produtos").send({nome: "banana", preco: 10.00})
+    expect(response.status).toBe(201)
+    expect(response.headers['content-type']).toMatch(/json/)
+}) 
+
 test("Deve retornar status 200 e um json no GET id",
 async function(){
     const response = await request.get("/produtos/1")
@@ -23,11 +29,7 @@ async function(){
     expect(response.headers['content-type']).toMatch(/json/)
 })
 
-test("Deve retornar status 201 e um json no POST", async function(){
-    const response = await request.post("/produtos").send({nome: "banana", preco: 10.00})
-    expect(response.status).toBe(201)
-    expect(response.headers['content-type']).toMatch(/json/)
-})
+
 
 test("Deve retornar status 422 e um json no POST", async function(){
     const response = await request.post("/produtos")
